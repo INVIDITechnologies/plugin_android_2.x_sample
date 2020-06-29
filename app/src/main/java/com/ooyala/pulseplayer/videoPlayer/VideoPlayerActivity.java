@@ -174,6 +174,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         selectedVideoItem.setContentId(getIntent().getExtras().getString("contentId"));
         selectedVideoItem.setContentUrl(getIntent().getExtras().getString("contentUrl"));
         selectedVideoItem.setCategory(getIntent().getExtras().getString("category"));
+        selectedVideoItem.setOverlayPosition(getIntent().getExtras().getIntArray("overlayPositions"));
 
         return selectedVideoItem;
     }

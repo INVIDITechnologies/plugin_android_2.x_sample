@@ -39,6 +39,12 @@ public class VideoItem {
      */
     private String category;
 
+    /**
+     *  An array of numbers of positions (in seconds) where overlay ad breaks
+     *  may occur.
+     */
+    private int[] overlayPositions = null;
+
     ///////////////////Default Constructor//////////////////////////////////
     public VideoItem() {
         super();
@@ -91,5 +97,13 @@ public class VideoItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int[] getOverlayPositions() {
+        return overlayPositions;
+    }
+
+    public void setOverlayPosition(int[] overlayPositions) {
+        this.overlayPositions = overlayPositions;
     }
 }

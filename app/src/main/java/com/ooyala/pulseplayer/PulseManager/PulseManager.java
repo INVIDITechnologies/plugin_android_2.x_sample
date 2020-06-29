@@ -383,6 +383,14 @@ public class PulseManager implements PulseSessionListener {
             }
             newRequestSettings.setLinearPlaybackPositions(playbackPosition);
         }
+
+        if (videoItem.getOverlayPositions() != null && videoItem.getOverlayPositions().length != 0) {
+            ArrayList<Float> nonlinearPlaybackPosition = new ArrayList<>();
+            for (int i = 0; i < videoItem.getOverlayPositions().length; i++) {
+                nonlinearPlaybackPosition.add((float) videoItem.getOverlayPositions()[i]);
+            }
+            newRequestSettings.setNonlinearPlaybackPositions(nonlinearPlaybackPosition);
+        }
         newRequestSettings.setMaxBitRate(800);
         newRequestSettings.setAdvertisingID("96bd03b6-defc-4203-83d3-dc1c730801f7");
         newRequestSettings.setApplicationName("pulseplayer");

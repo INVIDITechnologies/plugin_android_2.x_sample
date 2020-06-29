@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         String[] tags = null;
         int[] midrollPosition = null;
+        int[] overlayPosition = null;
         try {
             if (videoJson.has("tags")) {
                 JSONArray tagArray = videoJson.getJSONArray("tags");
@@ -178,11 +179,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 midrollPosition = new int[0];
             }
 
+            if (videoJson.has("overlay-positions")) {
+                JSONArray overlayPositionArray = videoJson.getJSONArray("overlay-positions");
+                overlayPosition = new int[overlayPositionArray.length()];
+                for (int i = 0; i < overlayPositionArray.length(); i++) {
+                    overlayPosition[i] = overlayPositionArray.getInt(i);
+                }
+            } else {
+                overlayPosition = new int[0];
+            }
+
         } catch (JSONException e) {
             Log.i("Pulse Demo Player", "Error occurred: "+ e.getClass());
         }
         videoItem.setTags(tags);
         videoItem.setMidrollPosition(midrollPosition);
+        videoItem.setOverlayPosition(overlayPosition);
         if (videoJson.has("category")) {
             videoItem.setCategory(getString(videoJson, "category"));
         } else {
@@ -226,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra("contentId", selection.getContentId());
         intent.putExtra("contentUrl", selection.getContentUrl());
         intent.putExtra("category", selection.getCategory());
+        intent.putExtra("overlayPositions", selection.getOverlayPositions());
 
         startActivity(intent);
     }
